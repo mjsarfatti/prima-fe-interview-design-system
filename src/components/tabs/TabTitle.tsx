@@ -6,11 +6,11 @@ interface IBaseTabTitle {
   children?: string;
 }
 
-export interface ITabTitle extends IBaseTabTitle {
+interface ITabTitle extends IBaseTabTitle {
   handleClick: () => void;
 }
 
-export interface IStyledTabTitle extends IBaseTabTitle {
+interface IStyledTabTitle extends IBaseTabTitle {
   onClick: () => void;
 }
 

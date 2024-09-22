@@ -1,16 +1,41 @@
 import styled from "styled-components";
-import { TabTitlePill } from "./TabTitle";
+import { TabTitle } from "./TabTitle";
+import { useState } from "react";
 
-interface Tab {
+type Badge = {
+  title: string;
+  variant: "neutral" | "positive" | "negative";
+};
+
+type Tab = {
   title: string;
   content: React.ReactNode;
+  badge?: Badge;
+};
+
+interface ITabList {
+  tabs: Tab[];
+  variant: "pill" | "underline";
 }
 
-interface TabListProps {
-  tabs: Tab[];
-  activeTab?: number;
-  onTabChange?: (index: number) => void;
-}
+export const TabList = ({ tabs, variant = "pill" }: ITabList) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <StyledTabList>
+      {tabs.map((tab, index) => (
+        <TabTitle
+          key={index}
+          variant={variant}
+          isSelected={index === activeTab}
+          handleClick={() => setActiveTab(index)}
+        >
+          {tab.title}
+        </TabTitle>
+      ))}
+    </StyledTabList>
+  );
+};
 
 const StyledTabList = styled.div`
   display: flex;
@@ -18,18 +43,3 @@ const StyledTabList = styled.div`
   align-content: flex-start;
   gap: ${(props) => props.theme.spacing["xs"]};
 `;
-
-export const TabList: React.FC<TabListProps> = ({
-  tabs /*activeTab, onTabChange*/,
-}) => (
-  <StyledTabList>
-    {tabs.map((tab, index) => (
-      <TabTitlePill
-        key={index}
-        title={tab.title}
-        /* isActive={index === activeTab}
-        onClick={() => onTabChange(index)} */
-      />
-    ))}
-  </StyledTabList>
-);
