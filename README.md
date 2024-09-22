@@ -1,3 +1,27 @@
+# Frontend Interview - Design System, by Manuele Sarfatti
+
+This project uses `yarn`, `styled-components` and `storybook`.
+
+To review it:
+
+```bash
+# Install
+yarn
+
+# Run Storybook
+yarn storybook
+```
+
+Stories (components) are organized in atoms/molecules/organisms according to Atomic Design principles.
+
+They have been tested on **Chrome** on macOS and **Safari** on iOS.
+
+<br/>
+<br/>
+<br/>
+
+_Original README below 👇🏻_
+
 # Frontend Interview - Design System
 
 Hey 👋
