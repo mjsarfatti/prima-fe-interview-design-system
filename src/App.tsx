@@ -3,7 +3,7 @@ import { theme } from "./theme";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    color-scheme: light dark;
+    /* color-scheme: light dark; */
     --c-light: ${(props) => props.theme.color.light};
     --c-dark: ${(props) => props.theme.color.dark};
   }
@@ -25,19 +25,18 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: light-dark(var(--c-light), var(--c-dark));
-    display: grid;
-    font-size: 2rem;
-    line-height: 1.5;
+    /* background-color: light-dark(var(--c-light), var(--c-dark)); */
+    background-color: ${(props) => props.theme.color.white};
+    font-size: ${(props) => props.theme.font.size.regular};
+    line-height: ${(props) => props.theme.font.height};
     font-family: ${(props) => props.theme.font.family};
+    color: ${(props) => props.theme.color.dark};
     margin: 0;
     min-height: 100vh;
   }
 `;
 
-export const ThemeWrapper: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => (
+export const ThemeWrapper = ({ children }: { children: React.ReactNode }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyle />
