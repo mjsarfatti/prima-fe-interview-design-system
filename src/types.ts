@@ -1,10 +1,10 @@
-export type BadgeType = {
+export type TBadge = {
   title: string;
   variant: "neutral" | "positive" | "negative";
 };
 
-export type TabType = {
+export type TTab = {
   title: string;
   content: React.ReactNode;
-  badge?: BadgeType;
+  badge?: TBadge;
 };

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { Badge } from "../badge/Badge";
-import { BadgeType } from "../../types";
+import { TBadge } from "../../types";
 
 interface IBaseTabTitle {
   variant: "pill" | "underline";
@@ -9,7 +9,7 @@ interface IBaseTabTitle {
 
 interface ITabTitle extends IBaseTabTitle {
   children?: string;
-  badge?: BadgeType;
+  badge?: TBadge;
   handleClick: () => void;
 }
 

@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TabList } from "./TabList";
-import { fn } from "@storybook/test";
+import { Tabs } from "./Tabs";
 
-const meta: Meta<typeof TabList> = {
-  title: "Design System/Molecules/Tab List",
-  component: TabList,
+const meta: Meta<typeof Tabs> = {
+  title: "Design System/Organisms/Tabs",
+  component: Tabs,
   tags: ["autodocs"],
   argTypes: {
     variant: {
@@ -18,7 +17,7 @@ const meta: Meta<typeof TabList> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof TabList>;
+type Story = StoryObj<typeof Tabs>;
 
 export const Default: Story = {
   name: "Pill",
@@ -49,8 +48,6 @@ export const Default: Story = {
         content: "Lorem ipsum messages...",
       },
     ],
-    activeTab: 0,
-    setActiveTab: fn(),
   },
 };
 

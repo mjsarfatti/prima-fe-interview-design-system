@@ -1,16 +1,20 @@
 import styled, { css } from "styled-components";
-import { useState } from "react";
 import { TabTitle } from "./TabTitle";
-import { TabType } from "../../types";
+import { TTab } from "../../types";
 
 interface ITabList {
-  tabs: TabType[];
+  tabs: TTab[];
   variant: "pill" | "underline";
+  activeTab: number;
+  setActiveTab: (index: number) => void;
 }
 
-export const TabList = ({ tabs, variant = "pill" }: ITabList) => {
-  const [activeTab, setActiveTab] = useState(0);
-
+export const TabList = ({
+  tabs,
+  variant,
+  activeTab,
+  setActiveTab,
+}: ITabList) => {
   return (
     <StyledTabList variant={variant}>
       {tabs.map((tab, index) => (
