@@ -1,3 +1,5 @@
+const BREAKPOINT = 768;
+
 export const theme = {
   color: {
     white: "white",
@@ -40,5 +42,9 @@ export const theme = {
       small: "12px",
     },
     height: 1.5,
+  },
+  media: {
+    mobileOnly: `(max-width: ${BREAKPOINT - 1}px)`,
+    desktopOnly: `(min-width: ${BREAKPOINT}px)`,
   },
 };

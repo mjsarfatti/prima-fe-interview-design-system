@@ -43,7 +43,7 @@ export const StyledTabTitle = styled.button<IStyledTabTitle>`
   position: relative;
   height: 50px;
   line-height: 50px;
-  border-radius: 25px;
+  border-radius: calc(50px / 2);
   padding: 0 ${(props) => props.theme.spacing["s"]};
   border: 1px solid ${(props) => props.theme.color.gray["80"]};
   font-size: ${(props) => props.theme.font.size.regular};
@@ -63,7 +63,7 @@ export const StyledTabTitle = styled.button<IStyledTabTitle>`
     bottom: -4px;
     left: -4px;
     right: -4px;
-    border-radius: 29px;
+    border-radius: calc(50px / 2 + 4px);
     border: 2px solid transparent;
     transition: all 0.2s ease;
   }
@@ -176,8 +176,33 @@ export const StyledTabTitle = styled.button<IStyledTabTitle>`
       }
     `}
 
-    & ${Badge} {
+  & ${Badge} {
     vertical-align: 1px;
     margin-left: ${(props) => props.theme.spacing["2xs"]};
+  }
+
+  @media ${(props) => props.theme.media.mobileOnly} {
+    height: 42px;
+    line-height: 42px;
+    border-radius: calc(42px / 2);
+    padding: 0 ${(props) => props.theme.spacing["xs"]};
+
+    /* Outline */
+    &::before {
+      border-radius: calc(42px / 2 + 4px);
+    }
+
+    /* Underline variant */
+    ${(props) =>
+      props.variant === "underline" &&
+      css`
+        padding: 0;
+        border-radius: 0;
+
+        /* Outline */
+        &::before {
+          border-radius: 5px;
+        }
+      `}
   }
 `;

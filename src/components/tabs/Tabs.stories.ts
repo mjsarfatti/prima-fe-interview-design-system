@@ -37,7 +37,8 @@ export const Default: Story = {
       },
       {
         title: "Edits",
-        content: "Lorem ipsum edits...",
+        content:
+          "Donec ullamcorper nulla non metus auctor fringilla. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum.",
       },
       {
         title: "Dashboard",

@@ -51,4 +51,15 @@ const StyledTabList = styled.div<{ variant?: "pill" | "underline" }>`
     css`
       gap: ${(props) => props.theme.spacing["xl"]};
     `}
+
+  @media ${(props) => props.theme.media.mobileOnly} {
+    gap: ${(props) => props.theme.spacing["2xs"]};
+
+    /* Underline variant */
+    ${(props) =>
+      props.variant === "underline" &&
+      css`
+        gap: ${(props) => props.theme.spacing["l"]};
+      `}
+  }
 `;

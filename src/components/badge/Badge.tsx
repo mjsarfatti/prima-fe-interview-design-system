@@ -29,4 +29,9 @@ export const Badge = styled.span<IBadge>`
     css`
       background-color: ${(props) => props.theme.color.negative};
     `}
+
+    @media ${(props) => props.theme.media.mobileOnly} {
+    padding: ${(props) =>
+      props.theme.spacing["4xs"] + " " + props.theme.spacing["3xs"]};
+  }
 `;
