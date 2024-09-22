@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TabTitlePill } from "./tab-title";
+import { TabTitlePill } from "./TabTitle";
 
 interface Tab {
   title: string;

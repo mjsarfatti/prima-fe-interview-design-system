@@ -4,11 +4,12 @@ export const TabTitlePill = styled.button<{
   $variant?: "pill" | "underline";
   $isSelected?: boolean;
 }>`
+  display: block;
   height: 50px;
   line-height: 50px;
+  border-radius: 25px;
   padding: 0 ${(props) => props.theme.spacing["xs"]};
   border: 1px solid ${(props) => props.theme.color.gray["55"]};
-  border-radius: 50%;
   font-size: ${(props) => props.theme.font.size.regular};
   font-weight: bold;
   color: ${(props) => props.theme.color.slate["10"]};

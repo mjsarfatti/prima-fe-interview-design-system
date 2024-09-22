@@ -30,3 +30,4 @@ dist-ssr
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+*storybook.log
