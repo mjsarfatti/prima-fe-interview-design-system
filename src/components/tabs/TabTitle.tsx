@@ -1,23 +1,36 @@
-import { ReactNode } from "react";
 import styled, { css } from "styled-components";
 
-export interface ITabTitle {
-  $variant: "pill" | "underline";
-  $isSelected: boolean;
-  handleClick: () => void;
+interface IBaseTabTitle {
+  variant: "pill" | "underline";
+  isSelected: boolean;
   children?: string;
 }
 
+export interface ITabTitle extends IBaseTabTitle {
+  handleClick: () => void;
+}
+
+export interface IStyledTabTitle extends IBaseTabTitle {
+  onClick: () => void;
+}
+
 export const TabTitle = ({
-  $variant = "pill",
-  $isSelected = false,
+  variant = "pill",
+  isSelected = false,
+  handleClick,
   ...props
 }: ITabTitle) => (
-  <StyledTabTitle $variant={$variant} $isSelected={$isSelected} {...props} />
+  <StyledTabTitle
+    variant={variant}
+    isSelected={isSelected}
+    onClick={handleClick}
+    {...props}
+  />
 );
 
-const StyledTabTitle = styled.button<ITabTitle>`
+const StyledTabTitle = styled.button<IStyledTabTitle>`
   display: block;
+  position: relative;
   height: 50px;
   line-height: 50px;
   border-radius: 25px;
@@ -27,10 +40,22 @@ const StyledTabTitle = styled.button<ITabTitle>`
   font-weight: bold;
   color: ${(props) => props.theme.color.slate["10"]};
   background-color: ${(props) => props.theme.color.slate["100"]};
-  outline: 2px solid transparent;
-  outline-offset: 2px;
   cursor: pointer;
   transition: all 0.2s ease;
+
+  /* Outline */
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    border-radius: 29px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
 
   /* Hover state */
   &:hover {
@@ -46,12 +71,63 @@ const StyledTabTitle = styled.button<ITabTitle>`
 
   /* Focus state */
   &:focus {
-    outline-color: ${(props) => props.theme.color.slate["10"]};
+    outline: none;
   }
 
-  /* Selected state */
+  &:focus::before {
+    border-color: ${(props) => props.theme.color.slate["10"]};
+  }
+
+  /* Non-selected state */
   ${(props) =>
-    props.$isSelected &&
+    !props.isSelected &&
+    css`
+      /* Outline */
+      &:focus::before {
+        border-color: ${(props) => props.theme.color.slate["0"]};
+      }
+    `}
+
+  /* Underline variant */
+  ${(props) =>
+    props.variant === "underline" &&
+    css`
+      padding: 0;
+      border: none;
+      border-radius: 0;
+
+      &::after {
+        display: block;
+        content: "";
+        width: 100%;
+        height: 3px;
+        background-color: transparent;
+        border-radius: 1.5px;
+        transform: translateY(-3px);
+        transition: all 0.2s ease;
+      }
+
+      /* Outline */
+      &::before {
+        border-radius: 5px;
+      }
+
+      /* Hover, active, focus states */
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: ${(props) => props.theme.color.slate["100"]};
+
+        &::after {
+          background-color: ${(props) => props.theme.color.gray["45"]};
+        }
+      }
+    `}
+
+/* Selected state (pill) */
+${(props) =>
+    props.isSelected &&
+    props.variant === "pill" &&
     css`
       color: ${(props) => props.theme.color.white};
       background-color: ${(props) => props.theme.color.slate["10"]};
@@ -67,6 +143,25 @@ const StyledTabTitle = styled.button<ITabTitle>`
       &:active {
         background-color: ${(props) => props.theme.color.slate["30"]};
         border-color: ${(props) => props.theme.color.slate["30"]};
+      }
+    `}
+
+/* Selected state (underline) */
+${(props) =>
+    props.isSelected &&
+    props.variant === "underline" &&
+    css`
+      &::after {
+        background-color: ${(props) => props.theme.color.slate["10"]};
+      }
+
+      /* Hover, active, focus states */
+      &:hover,
+      &:active,
+      &:focus {
+        &::after {
+          background-color: ${(props) => props.theme.color.slate["10"]};
+        }
       }
     `}
 `;

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 import { TabTitle } from "./TabTitle";
 
@@ -7,7 +8,7 @@ const meta: Meta<typeof TabTitle> = {
   component: TabTitle,
   tags: ["autodocs"],
   argTypes: {
-    $variant: {
+    variant: {
       control: {
         type: "select",
       },
@@ -23,13 +24,14 @@ export const Default: Story = {
   name: "Pill",
   args: {
     children: "Label",
-    $isSelected: false,
+    isSelected: false,
+    handleClick: fn(),
   },
 };
 
 export const Underline: Story = {
   args: {
     ...Default.args,
-    $variant: "underline",
+    variant: "underline",
   },
 };
