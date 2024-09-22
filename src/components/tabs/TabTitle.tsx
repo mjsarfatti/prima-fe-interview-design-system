@@ -48,6 +48,7 @@ export const StyledTabTitle = styled.button<IStyledTabTitle>`
   border: 1px solid ${(props) => props.theme.color.gray["80"]};
   font-size: ${(props) => props.theme.font.size.regular};
   font-weight: bold;
+  text-wrap: nowrap;
   color: ${(props) => props.theme.color.slate["10"]};
   background-color: ${(props) => props.theme.color.slate["100"]};
   cursor: pointer;

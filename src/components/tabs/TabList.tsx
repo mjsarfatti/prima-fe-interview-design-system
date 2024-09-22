@@ -34,9 +34,16 @@ export const TabList = ({
 
 const StyledTabList = styled.div<{ variant?: "pill" | "underline" }>`
   display: flex;
-  align-items: flex-end;
-  align-content: flex-start;
   gap: ${(props) => props.theme.spacing["xs"]};
+  margin: 0 -${(props) => props.theme.spacing["s"]};
+  padding: 5px ${(props) => props.theme.spacing["s"]};
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   /* Underline variant */
   ${(props) =>

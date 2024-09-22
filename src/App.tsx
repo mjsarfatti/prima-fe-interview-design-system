@@ -32,6 +32,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${(props) => props.theme.font.family};
     color: ${(props) => props.theme.color.dark};
     margin: 0;
+    padding: ${(props) =>
+      props.theme.spacing["s"]} !important; /* Override SB padding */
     min-height: 100vh;
   }
 `;
