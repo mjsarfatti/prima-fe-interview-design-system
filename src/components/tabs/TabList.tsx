@@ -1,16 +1,10 @@
-import styled from "styled-components";
-import { TabTitle } from "./TabTitle";
+import styled, { css } from "styled-components";
 import { useState } from "react";
-import { BadgeType } from "../badge/Badge";
-
-type Tab = {
-  title: string;
-  content: React.ReactNode;
-  badge?: BadgeType;
-};
+import { TabTitle } from "./TabTitle";
+import { TabType } from "../../types";
 
 interface ITabList {
-  tabs: Tab[];
+  tabs: TabType[];
   variant: "pill" | "underline";
 }
 
@@ -18,7 +12,7 @@ export const TabList = ({ tabs, variant = "pill" }: ITabList) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <StyledTabList>
+    <StyledTabList variant={variant}>
       {tabs.map((tab, index) => (
         <TabTitle
           key={index}
@@ -34,9 +28,16 @@ export const TabList = ({ tabs, variant = "pill" }: ITabList) => {
   );
 };
 
-const StyledTabList = styled.div`
+const StyledTabList = styled.div<{ variant?: "pill" | "underline" }>`
   display: flex;
   align-items: flex-end;
   align-content: flex-start;
   gap: ${(props) => props.theme.spacing["xs"]};
+
+  /* Underline variant */
+  ${(props) =>
+    props.variant === "underline" &&
+    css`
+      gap: ${(props) => props.theme.spacing["xl"]};
+    `}
 `;

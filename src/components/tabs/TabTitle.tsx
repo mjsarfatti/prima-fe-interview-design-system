@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
-import { Badge, BadgeType } from "../badge/Badge";
+import { Badge } from "../badge/Badge";
+import { BadgeType } from "../../types";
 
 interface IBaseTabTitle {
   variant: "pill" | "underline";
@@ -37,13 +38,13 @@ export const TabTitle = ({
   </StyledTabTitle>
 );
 
-const StyledTabTitle = styled.button<IStyledTabTitle>`
+export const StyledTabTitle = styled.button<IStyledTabTitle>`
   display: block;
   position: relative;
   height: 50px;
   line-height: 50px;
   border-radius: 25px;
-  padding: 0 ${(props) => props.theme.spacing["xs"]};
+  padding: 0 ${(props) => props.theme.spacing["s"]};
   border: 1px solid ${(props) => props.theme.color.gray["80"]};
   font-size: ${(props) => props.theme.font.size.regular};
   font-weight: bold;
@@ -133,8 +134,8 @@ const StyledTabTitle = styled.button<IStyledTabTitle>`
       }
     `}
 
-/* Selected state (pill) */
-${(props) =>
+  /* Selected state (pill) */
+  ${(props) =>
     props.isSelected &&
     props.variant === "pill" &&
     css`
@@ -155,8 +156,8 @@ ${(props) =>
       }
     `}
 
-/* Selected state (underline) */
-${(props) =>
+  /* Selected state (underline) */
+  ${(props) =>
     props.isSelected &&
     props.variant === "underline" &&
     css`
@@ -173,4 +174,9 @@ ${(props) =>
         }
       }
     `}
+
+    & ${Badge} {
+    vertical-align: 1px;
+    margin-left: ${(props) => props.theme.spacing["2xs"]};
+  }
 `;

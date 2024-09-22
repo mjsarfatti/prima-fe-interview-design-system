@@ -1,10 +1,5 @@
 import styled, { css } from "styled-components";
 
-export type BadgeType = {
-  title: string;
-  variant: "neutral" | "positive" | "negative";
-};
-
 interface IBadge {
   variant: "neutral" | "positive" | "negative";
   children?: string;
