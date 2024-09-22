@@ -1,9 +1,22 @@
+import { ReactNode } from "react";
 import styled, { css } from "styled-components";
 
-export const TabTitlePill = styled.button<{
-  $variant?: "pill" | "underline";
-  $isSelected?: boolean;
-}>`
+export interface ITabTitle {
+  $variant: "pill" | "underline";
+  $isSelected: boolean;
+  handleClick: () => void;
+  children?: string;
+}
+
+export const TabTitle = ({
+  $variant = "pill",
+  $isSelected = false,
+  ...props
+}: ITabTitle) => (
+  <StyledTabTitle $variant={$variant} $isSelected={$isSelected} {...props} />
+);
+
+const StyledTabTitle = styled.button<ITabTitle>`
   display: block;
   height: 50px;
   line-height: 50px;
@@ -27,8 +40,8 @@ export const TabTitlePill = styled.button<{
 
   /* Active state */
   &:active {
-    background-color: ${(props) => props.theme.color.slate["90"]};
-    border-color: ${(props) => props.theme.color.gray["45"]};
+    background-color: ${(props) => props.theme.color.slate["80"]};
+    border-color: ${(props) => props.theme.color.gray["55"]};
   }
 
   /* Focus state */
