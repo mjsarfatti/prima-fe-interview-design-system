@@ -1,12 +1,14 @@
 import styled, { css } from "styled-components";
+import { Badge, BadgeType } from "../badge/Badge";
 
 interface IBaseTabTitle {
   variant: "pill" | "underline";
   isSelected: boolean;
-  children?: string;
 }
 
 interface ITabTitle extends IBaseTabTitle {
+  children?: string;
+  badge?: BadgeType;
   handleClick: () => void;
 }
 
@@ -17,6 +19,8 @@ interface IStyledTabTitle extends IBaseTabTitle {
 export const TabTitle = ({
   variant = "pill",
   isSelected = false,
+  badge,
+  children,
   handleClick,
   ...props
 }: ITabTitle) => (
@@ -25,7 +29,12 @@ export const TabTitle = ({
     isSelected={isSelected}
     onClick={handleClick}
     {...props}
-  />
+  >
+    {children}
+    {badge && (
+      <Badge variant={badge.variant ?? badge.variant}>{badge.title}</Badge>
+    )}
+  </StyledTabTitle>
 );
 
 const StyledTabTitle = styled.button<IStyledTabTitle>`
@@ -35,7 +44,7 @@ const StyledTabTitle = styled.button<IStyledTabTitle>`
   line-height: 50px;
   border-radius: 25px;
   padding: 0 ${(props) => props.theme.spacing["xs"]};
-  border: 1px solid ${(props) => props.theme.color.gray["55"]};
+  border: 1px solid ${(props) => props.theme.color.gray["80"]};
   font-size: ${(props) => props.theme.font.size.regular};
   font-weight: bold;
   color: ${(props) => props.theme.color.slate["10"]};
@@ -60,13 +69,13 @@ const StyledTabTitle = styled.button<IStyledTabTitle>`
   /* Hover state */
   &:hover {
     background-color: ${(props) => props.theme.color.slate["90"]};
-    border-color: ${(props) => props.theme.color.gray["45"]};
+    border-color: ${(props) => props.theme.color.gray["70"]};
   }
 
   /* Active state */
   &:active {
     background-color: ${(props) => props.theme.color.slate["80"]};
-    border-color: ${(props) => props.theme.color.gray["55"]};
+    border-color: ${(props) => props.theme.color.gray["80"]};
   }
 
   /* Focus state */
@@ -119,7 +128,7 @@ const StyledTabTitle = styled.button<IStyledTabTitle>`
         background-color: ${(props) => props.theme.color.slate["100"]};
 
         &::after {
-          background-color: ${(props) => props.theme.color.gray["45"]};
+          background-color: ${(props) => props.theme.color.gray["70"]};
         }
       }
     `}

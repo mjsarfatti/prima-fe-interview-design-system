@@ -1,16 +1,12 @@
 import styled from "styled-components";
 import { TabTitle } from "./TabTitle";
 import { useState } from "react";
-
-type Badge = {
-  title: string;
-  variant: "neutral" | "positive" | "negative";
-};
+import { BadgeType } from "../badge/Badge";
 
 type Tab = {
   title: string;
   content: React.ReactNode;
-  badge?: Badge;
+  badge?: BadgeType;
 };
 
 interface ITabList {
@@ -29,6 +25,7 @@ export const TabList = ({ tabs, variant = "pill" }: ITabList) => {
           variant={variant}
           isSelected={index === activeTab}
           handleClick={() => setActiveTab(index)}
+          badge={tab.badge ?? tab.badge}
         >
           {tab.title}
         </TabTitle>

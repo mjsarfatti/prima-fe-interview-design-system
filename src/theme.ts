@@ -4,7 +4,10 @@ export const theme = {
     light: "#eee",
     dark: "#111",
     black: "black",
+    positive: "#B1FFC7",
+    negative: "#FFBFB1",
     slate: {
+      "0": "black",
       "10": "#1B2135",
       "20": "#343A4E",
       "30": "#585D71",
@@ -13,8 +16,9 @@ export const theme = {
       "100": "white",
     },
     gray: {
-      "45": "#C3C5CF",
-      "55": "#D3D3DC",
+      "70": "#C3C5CF",
+      "80": "#D3D3DC",
+      "90": "#F0F1F7",
     },
   },
   spacing: {
