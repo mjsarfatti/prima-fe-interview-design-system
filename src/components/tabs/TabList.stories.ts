@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { TabList } from "./TabList";
 import { fn } from "@storybook/test";
+import { TabList } from "./TabList";
 
 const meta: Meta<typeof TabList> = {
   title: "Design System/Molecules/Tab List",

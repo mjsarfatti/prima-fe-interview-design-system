@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { TabTitle } from "./TabTitle";
+import { Tab } from "./Tab";
 
-const meta: Meta<typeof TabTitle> = {
+const meta: Meta<typeof Tab> = {
   title: "Design System/Atoms/Tab Title",
-  component: TabTitle,
+  component: Tab,
   tags: ["autodocs"],
   argTypes: {
     variant: {
@@ -18,7 +18,7 @@ const meta: Meta<typeof TabTitle> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof TabTitle>;
+type Story = StoryObj<typeof Tab>;
 
 export const Default: Story = {
   name: "Pill",

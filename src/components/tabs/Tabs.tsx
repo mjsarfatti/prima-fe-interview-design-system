@@ -1,26 +1,49 @@
 import styled from "styled-components";
-import { useState } from "react";
+import uniqid from "uniqid";
+import { useRef, useState } from "react";
 import { TTab } from "../../types";
 import { TabList } from "./TabList";
-import { TabContent } from "./TabContent";
+import { TabPanels } from "./TabPanels";
 
-interface ITabs {
+interface ITabList {
+  title: string;
   tabs: TTab[];
   variant?: "pill" | "underline";
 }
 
-export const Tabs = ({ tabs, variant = "pill" }: ITabs) => {
+export const Tabs = ({ title, tabs, variant = "pill" }: ITabList) => {
   const [activeTab, setActiveTab] = useState(0);
+  const uniqueRef = useRef(uniqid.time());
+
+  const selectNext = () => {
+    let newActiveTab = activeTab + 1;
+    if (newActiveTab >= tabs.length) newActiveTab = 0;
+    setActiveTab(newActiveTab);
+  };
+
+  const selectPrevious = () => {
+    let newActiveTab = activeTab - 1;
+    if (newActiveTab < 0) newActiveTab = tabs.length - 1;
+    setActiveTab(newActiveTab);
+  };
 
   return (
     <StyledTabs>
       <TabList
+        title={title}
         variant={variant}
         tabs={tabs}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        selectNext={selectNext}
+        selectPrevious={selectPrevious}
+        uniqueId={uniqueRef.current}
       />
-      <TabContent>{tabs[activeTab].content}</TabContent>
+      <TabPanels
+        tabs={tabs}
+        activeTab={activeTab}
+        uniqueId={uniqueRef.current}
+      />
     </StyledTabs>
   );
 };

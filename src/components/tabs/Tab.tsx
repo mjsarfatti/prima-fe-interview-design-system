@@ -1,44 +1,79 @@
 import styled, { css } from "styled-components";
+import { KeyboardEvent, useEffect, useRef } from "react";
 import { Badge } from "../badge/Badge";
 import { TBadge } from "../../types";
 
-interface IBaseTabTitle {
+interface IBaseTab {
   variant: "pill" | "underline";
   isSelected: boolean;
 }
 
-interface ITabTitle extends IBaseTabTitle {
+interface ITab extends IBaseTab {
   children?: string;
   badge?: TBadge;
   handleClick: () => void;
+  selectNext: () => void;
+  selectPrevious: () => void;
+  uniqueId: string;
+  index: number;
 }
 
-interface IStyledTabTitle extends IBaseTabTitle {
+interface IStyledTab extends IBaseTab {
   onClick: () => void;
 }
 
-export const TabTitle = ({
+export const Tab = ({
   variant = "pill",
   isSelected = false,
   badge,
   children,
   handleClick,
+  selectNext,
+  selectPrevious,
+  uniqueId,
+  index,
   ...props
-}: ITabTitle) => (
-  <StyledTabTitle
-    variant={variant}
-    isSelected={isSelected}
-    onClick={handleClick}
-    {...props}
-  >
-    {children}
-    {badge && (
-      <Badge variant={badge.variant ?? badge.variant}>{badge.title}</Badge>
-    )}
-  </StyledTabTitle>
-);
+}: ITab) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-export const StyledTabTitle = styled.button<IStyledTabTitle>`
+  useEffect(() => {
+    if (isSelected && buttonRef.current) {
+      buttonRef.current.focus();
+    }
+  }, [isSelected]);
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowRight") {
+      selectNext();
+    } else if (event.key === "ArrowLeft") {
+      selectPrevious();
+    }
+  };
+
+  return (
+    <StyledTab
+      variant={variant}
+      isSelected={isSelected}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      {...props}
+      type="button"
+      id={`${uniqueId}-tab-${index}`}
+      role="tab"
+      tabIndex={isSelected ? undefined : -1}
+      aria-selected={isSelected}
+      aria-controls={`${uniqueId}-tabpanel-${index}`}
+      ref={buttonRef}
+    >
+      {children}
+      {badge && (
+        <Badge variant={badge.variant ?? badge.variant}>{badge.title}</Badge>
+      )}
+    </StyledTab>
+  );
+};
+
+export const StyledTab = styled.button<IStyledTab>`
   display: block;
   position: relative;
   height: 50px;

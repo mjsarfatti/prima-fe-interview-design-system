@@ -2018,6 +2018,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uniqid@npm:^5":
+  version: 5.3.4
+  resolution: "@types/uniqid@npm:5.3.4"
+  checksum: 10c0/0075a77f2d67ef0cfeb5b55d27b059e4302ea4f5adb9038be198a344495df814778e5765cb69303ad7b22977f2d0a6bd98ed0b3a3120e89a8a724b8a2dff6272
+  languageName: node
+  linkType: hard
+
 "@types/unist@npm:*, @types/unist@npm:^3.0.0":
   version: 3.0.3
   resolution: "@types/unist@npm:3.0.3"
@@ -3767,6 +3774,7 @@ __metadata:
     "@types/react": "npm:^18.3.8"
     "@types/react-dom": "npm:^18.3.0"
     "@types/styled-theming": "npm:^2"
+    "@types/uniqid": "npm:^5"
     "@typescript-eslint/eslint-plugin": "npm:^7.15.0"
     "@typescript-eslint/parser": "npm:^7.15.0"
     "@vitejs/plugin-react-swc": "npm:^3.5.0"
@@ -3781,6 +3789,7 @@ __metadata:
     styled-components: "npm:^6.1.13"
     styled-theming: "npm:^2.2.0"
     typescript: "npm:^5.2.2"
+    uniqid: "npm:^5.4.0"
     vite: "npm:^5.3.4"
     vitest: "npm:^2.0.5"
   languageName: unknown
@@ -6512,6 +6521,13 @@ __metadata:
   version: 6.19.8
   resolution: "undici-types@npm:6.19.8"
   checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
+  languageName: node
+  linkType: hard
+
+"uniqid@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "uniqid@npm:5.4.0"
+  checksum: 10c0/ef0d7c7ae26d5d7eb632ec9a1548575c855edfa422fd1ade1ee82d7d60bddef24574a53a5ec716db887ec763e4f5dea6dae4dfc1918e2ee5fda35dc43a6c0b7a
   languageName: node
   linkType: hard
 

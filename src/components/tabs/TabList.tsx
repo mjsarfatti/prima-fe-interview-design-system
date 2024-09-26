@@ -1,38 +1,50 @@
 import styled, { css } from "styled-components";
-import { TabTitle } from "./TabTitle";
+import { Tab } from "./Tab";
 import { TTab } from "../../types";
 
 interface ITabList {
+  title: string;
   tabs: TTab[];
   variant: "pill" | "underline";
   activeTab: number;
   setActiveTab: (index: number) => void;
+  selectNext: () => void;
+  selectPrevious: () => void;
+  uniqueId: string;
 }
 
 export const TabList = ({
+  title,
   tabs,
   variant,
   activeTab,
   setActiveTab,
+  selectNext,
+  selectPrevious,
+  uniqueId,
 }: ITabList) => {
   return (
-    <StyledTabList variant={variant}>
+    <StyledTablist variant={variant} role="tablist" aria-label={title}>
       {tabs.map((tab, index) => (
-        <TabTitle
+        <Tab
           key={index}
           variant={variant}
           isSelected={index === activeTab}
           handleClick={() => setActiveTab(index)}
+          selectNext={selectNext}
+          selectPrevious={selectPrevious}
           badge={tab.badge ?? tab.badge}
+          uniqueId={uniqueId}
+          index={index}
         >
           {tab.title}
-        </TabTitle>
+        </Tab>
       ))}
-    </StyledTabList>
+    </StyledTablist>
   );
 };
 
-const StyledTabList = styled.div<{ variant?: "pill" | "underline" }>`
+const StyledTablist = styled.div<{ variant?: "pill" | "underline" }>`
   display: flex;
   gap: ${(props) => props.theme.spacing["xs"]};
   margin: 0 -${(props) => props.theme.spacing["s"]};
